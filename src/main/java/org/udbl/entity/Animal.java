@@ -1,8 +1,12 @@
-package org.udbl;
+package org.udbl.entity;
 
-public abstract class Animal {
+import org.udbl.gestion.AgeValidatorException;
 
+import java.io.Serializable;
 
+public abstract class Animal implements Serializable {
+
+    private static long SerialVersionUID=1L;
     protected double taille;
     protected String espece;
     protected double poids;
@@ -16,6 +20,11 @@ public abstract class Animal {
         this.nom = nom;
     }
     public abstract void faireDubruit(String cri);
+
+    @Override
+    public String toString() {
+        return this.taille+","+espece+","+poids+","+age+","+nom;
+    }
 
     public double getTaille() {
         return taille;
@@ -47,6 +56,13 @@ public abstract class Animal {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public void setAge(int age) throws AgeValidatorException {
+        if(age<0){
+            throw new AgeValidatorException("Age est négatif");
+        }
+        else this.age = age;
     }
 
     public  void description(){

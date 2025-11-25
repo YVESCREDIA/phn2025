@@ -1,6 +1,10 @@
-package org.udbl;
+package org.udbl.entity;
 
-public class Perroquet extends Oiseau implements Volant,Parlant{
+import org.udbl.interfaces.Parlant;
+import org.udbl.interfaces.Volant;
+
+public class Perroquet extends Oiseau implements Volant, Parlant {
+    private static long SerialVersionUID=1L;
     public Perroquet(double taille, String espece, double poids, int age, String nom, double envergureAiles) {
         super(taille, espece, poids, age, nom, envergureAiles);
     }

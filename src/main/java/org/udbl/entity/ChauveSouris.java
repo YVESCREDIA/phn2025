@@ -1,6 +1,9 @@
-package org.udbl;
+package org.udbl.entity;
 
-public class ChauveSouris extends Mammifere implements Volant{
+import org.udbl.interfaces.Volant;
+
+public class ChauveSouris extends Mammifere implements Volant {
+    private static long SerialVersionUID=1L;
     public ChauveSouris(double taille, String espece, double poids, int age, String nom, String typePoils) {
         super(taille, espece, poids, age, nom, typePoils);
     }

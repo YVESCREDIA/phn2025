@@ -17,4 +17,5 @@ public abstract class Mammifere extends Animal {
         super.description();
         System.out.println("type de poils :"+this.typePoils);
     }
+
 }

@@ -1,24 +1,35 @@
 package org.udbl;
 
+import org.udbl.dao.AnimalBddRepository;
+import org.udbl.database.DbConnection;
+import org.udbl.entity.Animal;
+import org.udbl.entity.ChauveSouris;
+import org.udbl.entity.Perroquet;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException{
 
-       List<Animal>animaux = new ArrayList<>();
+        Animal animal = new Perroquet(5, "XXW", 8, 0, "Coco", 4);
+        Animal animal2 = new ChauveSouris(5, "eec", 4, 5, "eer", "brun");
 
-       animaux.add(new Perroquet(1.2,"Lion",190.0,8,"Simba",3.9));
-       animaux.add(new ChauveSouris(0.3,"Chauve-souris",0.5,4,"Batou","Court"));
-       animaux.add(new Personne(1.8,"Homme",75.0,30,"Alice","Française"));
+        List<Animal> animals = new ArrayList<>();
+        animals.add(animal);
+        animals.add(animal2);
 
-       AnimalRepository repository = new AnimalListRepository();
-       repository.save(animaux);
 
-       for(Animal a : repository.load()){
-           a.faireDubruit("Miolet");
-       }
+        Connection conn = DbConnection.getConnection();
+        AnimalBddRepository repo = new AnimalBddRepository(conn);
+        // repo.save(animals);
+        // System.out.println("Insertion réussie !");
+
+        repo.load().forEach(a -> {
+            System.out.println(a.getEspece() + " - " + a.getTaille() + " - " + a.getPoids());
+        });
+
     }
 }

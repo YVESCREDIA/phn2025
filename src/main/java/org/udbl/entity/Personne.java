@@ -1,4 +1,6 @@
-package org.udbl;
+package org.udbl.entity;
+
+import org.udbl.interfaces.Parlant;
 
 public class Personne extends Mammifere implements Parlant {
 
